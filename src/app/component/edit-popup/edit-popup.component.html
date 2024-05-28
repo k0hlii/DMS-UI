@@ -1,0 +1,31 @@
+<div [formGroup]="developerForm">
+    <h2 mat-dialog-title> Edit Developer</h2>
+    <mat-dialog-content>
+      <p>Edit the developer's details:</p>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstname" />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastname" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Field</mat-label>
+        <select matNativeControl formControlName="field">
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Full-Stack">Full-Stack</option>
+          <option value="AI/ML">AI/ML</option>
+          <option value="DevOps">WAITING</option>
+  
+        </select>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button [mat-dialog-close]="developer" cdkFocusInitial (click)="onConfirm()">Ok</button>
+    </mat-dialog-actions>
+  </div>

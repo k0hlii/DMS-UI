@@ -1,0 +1,48 @@
+<div [formGroup]="projectForm">
+  <h2 mat-dialog-title>Edit Project</h2>
+  <mat-dialog-content>
+    <p>Edit the project's details:</p>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Start Date</mat-label>
+      <input matInput type="date" formControlName="start" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>End Date</mat-label>
+      <input matInput type="date" formControlName="end" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <input matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <select matNativeControl formControlName="status">
+        <option value="DONE">DONE</option>
+        <option value="WORKING ON">WORKING ON</option>
+        <option value="PAUSED">PAUSED</option>
+        <option value="WAITING">WAITING</option>
+        <option value="TODO">TODO</option>
+
+      </select>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button
+      mat-button
+      [mat-dialog-close]="project"
+      cdkFocusInitial
+      (click)="onConfirm()"
+    >
+      Ok
+    </button>
+  </mat-dialog-actions>
+</div>

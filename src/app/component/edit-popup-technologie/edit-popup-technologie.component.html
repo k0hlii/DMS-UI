@@ -1,0 +1,24 @@
+<div [formGroup]="technologieForm">
+    <h2 mat-dialog-title> Edit Technologie</h2>
+    <mat-dialog-content>
+      <p>Edit the technologie's details:</p>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Usage</mat-label>
+        <input matInput formControlName="usage" />
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button [mat-dialog-close]="technologie" cdkFocusInitial (click)="onConfirm()">Ok</button>
+    </mat-dialog-actions>
+  </div>
