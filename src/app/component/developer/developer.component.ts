@@ -71,10 +71,6 @@ export class DeveloperComponent implements AfterViewInit {
       .subscribe({
         next: (response: any) => {
           console.log(response);
-          // response.forEach((d: any) => {
-          //   // d._id = d.idAsString;
-          //   this.devs.push(d);
-          // }, this);
 
           this.devs = response;
 
@@ -87,7 +83,6 @@ export class DeveloperComponent implements AfterViewInit {
   }
 
   addDeveloper() {
-
     const dialogRef = this.dialog.open(EditPopupComponent, {
       data: {
         firstname: '',

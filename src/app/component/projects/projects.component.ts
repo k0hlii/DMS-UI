@@ -8,9 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { Project } from '../../../types';
+import { Developer, Project } from '../../../types';
 import { ProjectsService } from '../../services/projects.service';
 import { EditPopupProjectComponent } from '../edit-popup-project/edit-popup-project.component';
+import { ManageDeveloperProjectPopupComponent } from '../manage-developer-project-popup/manage-developer-project-popup.component';
 
 
 @Component({
@@ -38,17 +39,22 @@ export class ProjectsComponent {
     public dialog: MatDialog
   ) {}
 
-  devs: Project[] = [];
+
+  
+  projects: Project[] = [];
+  developers: Developer[] = [];
+
 
   displayedColumns: string[] = [
     'name',
     'start',
     'end',
     'status',
+    'manageMembers',
     'actions'
   ];
 
-  dataSource: MatTableDataSource<Project> = new MatTableDataSource<Project>(this.devs);
+  dataSource: MatTableDataSource<Project> = new MatTableDataSource<Project>(this.projects);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -58,20 +64,45 @@ export class ProjectsComponent {
   }
 
   fetchProjects() {
-    this.devs = [];
+    this.projects = [];
     this.projectsService
       .getProjects('http://localhost:5285/api/Project')
       .subscribe({
         next: (response: any) => {
           console.log(response);
-          this.devs = response;
+          this.projects = response;
 
-          this.dataSource = new MatTableDataSource<Project>(this.devs);
+          this.dataSource = new MatTableDataSource<Project>(this.projects);
         },
         error: (error) => {
           console.error('Error fetching products');
         },
       });
+  }
+
+  manageMembers(project: Project) {
+
+    const dialogRef = this.dialog.open(ManageDeveloperProjectPopupComponent, {
+      data: project,
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+      
+    //   if (result) {
+    //     this.projectsService
+    //     .addProject('http://localhost:5285/api/Project', result)
+    //     .subscribe({
+    //       next: (response: any) => {
+    //         console.log(response);
+    //         this.fetchProjects();
+    //       },
+    //       error: (error) => {
+    //         console.error('Error adding developer');
+    //       },
+    //     });
+    //   }
+    // });
   }
 
   addProject() {

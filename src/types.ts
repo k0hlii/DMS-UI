@@ -28,14 +28,6 @@ export interface Options {
     | boolean;
 }
 
-// export interface Developers {
-//   items: Product[];
-//   total: number;
-//   page: number;
-//   perPage: number;
-//   totalPages: number;
-// }
-
 export interface Developer {
   _id?: string;
   idAsString?: string;
@@ -61,4 +53,11 @@ export interface Technologie {
   name: string;
   description : string;
   usage: string;
+}
+
+export interface ProjectMember {
+  _id?: string;
+  idAsString?: string;
+  projectID: string;
+  developerID: string;
 }
